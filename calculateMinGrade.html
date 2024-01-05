@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Calculate Minimum Final Exam Grade</title>
+</head>
+<body>
+    <div class="content-box">
+        <h2>Calculate Minimum Final Exam Grade</h2>
+
+        <!-- Dropdown menu for selecting a course -->
+        <label for="courseSelect">Select a course:</label>
+        <select id="courseSelect"></select>
+
+        <label for="desiredGrade">Enter your desired grade:</label>
+        <input type="number" id="desiredGrade" class="user-input" placeholder="e.g., 90">
+
+        <!-- Button to calculate the required final exam grade -->
+        <button onclick="calculateMinFinalExamGrade()" class="regular-button">Calculate Required Final Exam Grade</button>
+
+        <!-- Display the result in a div -->
+        <div id="resultContainer"></div>
+
+        <!-- Button to go back to the previous page -->
+        <button onclick="goBack()">Go Back</button>
+
+        <script>
+            // Populate the dropdown menu with course names
+            const courseSelect = document.getElementById("courseSelect");
+            courseData.forEach(course => {
+                const option = document.createElement("option");
+                option.value = course.courseName;
+                option.text = course.courseName;
+                courseSelect.add(option);
+            });
+
+            function calculateMinFinalExamGrade() {
+                const selectedCourseName = document.getElementById("courseSelect").value;
+                const desiredGrade = parseFloat(document.getElementById("desiredGrade").value);
+
+                // Ensure the entered value is valid
+                if (isNaN(desiredGrade) || desiredGrade < 0 || desiredGrade > 100) {
+                    alert("Invalid desired grade. Please enter a value between 0 and 100.");
+                    return;
+                }
+
+                // Find the selected course data
+                const selectedCourse = courseData.find(course => course.courseName === selectedCourseName);
+
+                if (!selectedCourse) {
+                    alert("Invalid course selection. Please select a course.");
+                    return;
+                }
+
+                // Call the existing function to calculate the required final exam grade
+                const requiredFinalExamGrade = calculateRequiredFinalExamGrade(
+                    selectedCourse.pointsEarned,
+                    selectedCourse.finalWeight,
+                    desiredGrade
+                );
+
+                // Display the result in the resultContainer
+                const resultText = `To achieve a desired grade of ${desiredGrade}%, you need ${requiredFinalExamGrade.toFixed(2)}% on the final exam for ${selectedCourseName}.`;
+                const resultContainer = document.getElementById("resultContainer");
+                resultContainer.innerHTML = resultText;
+            }
+
+            function goBack() {
+                window.location.href = "calculateCAverage.html";
+            }
+        </script>
+    </div>
+    <script src="prettify.js"></script>
+</body>
+</html>

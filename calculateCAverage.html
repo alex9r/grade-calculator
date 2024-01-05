@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Course Average Calculator</title>
+</head>
+<body>
+    <div class="content-box">
+        <h2>Calculate Course Average</h2>
+
+        <label for="courseName">Course Name:</label>
+        <input type="text" id="courseName" class="user-input" placeholder="Enter course name">
+
+        <button onclick="addRow()" class="small-button">Add Row</button>
+
+        <table id="inputDataTable">
+            <tr>
+                <th>Mark (%)</th>
+                <th>Component Weight</th>
+            </tr>
+            <tr>
+                <td><input type="number" class="input-mark user-input" placeholder="e.g., 90"></td>
+                <td><input type="number" class="input-weight user-input" placeholder="e.g., 30"></td>
+            </tr>
+        </table>
+
+        <label for="finalWeight">Enter the weight of the final exam:</label>
+        <input type="number" id="finalWeight" class="user-input" placeholder="e.g., 30">
+        
+        <button onclick="calculateCourseAverage()" class="regular-button">Calculate Course Average</button>
+
+        <br>
+
+        <h3>Results:</h3>
+        <table id="resultsTable">
+            <tr>
+                <th>Course Name</th>
+                <th>Current Standing</th>
+                <th>Balanced Percent Earned</th>
+                <th>Potential Max Grade</th>
+            </tr>
+        </table>
+        <br>
+        <h3>Find out the minimum grade needed on final to get desired grade</h3>
+        <button onclick="goToPage2()">Calculate</button>
+
+        <script>
+            function goToPage2() {
+                window.location.href = "calculateMinGrade.html";
+            }
+        </script>
+     </div>
+    <script src="prettify.js"></script>
+</body>
+</html>
+
